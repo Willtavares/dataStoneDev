@@ -1,7 +1,9 @@
-<script setup></script>
+<script setup>
+import Header from '../components/shared/header.vue'
+</script>
 
 <template>
   <div>
-    <h1 class="text-green-400">Vamos ver se funcionou</h1>
+    <Header />
   </div>
 </template>

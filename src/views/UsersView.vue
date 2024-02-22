@@ -1,12 +1,13 @@
 <template>
   <div>
     <Header />
-    <h1>Usuários</h1>
+    <ManageUsers />
   </div>
 </template>
 
 <script setup>
 import Header from '@/components/shared/header.vue'
+import ManageUsers from '@/components/ManageUsers.vue'
 </script>
 
 <style lang="scss" scoped></style>

@@ -36,7 +36,7 @@
       </div>
     </div>
     <div class="flex justify-center w-full mt-8">
-      <div class="w-1/3 border border-solid border-cyan-800 rounded-md bg-white">
+      <div class="w-96 border border-solid border-cyan-800 rounded-md bg-white">
         <table class="w-full">
           <thead class="border-b border-gray-500 w-full">
             <tr>
@@ -50,8 +50,15 @@
               <td class="p-2 text-center">Cenoura</td>
               <td class="p-2 text-center">Sim</td>
               <td class="p-2 border-l border-cyan-800 text-center">
-                <button class="rounded-md bg-red-500 hover:bg-red-600 py-1 px-2 text-sm text-white">
-                  Excluir
+                <button
+                  class="rounded-tl-md rounded-bl-md bg-cyan-500 hover:bg-cyan-600 py-1 px-2 text-sm text-white"
+                >
+                  Editar
+                </button>
+                <button
+                  class="rounded-tr-md rounded-br-md bg-red-500 hover:bg-red-600 py-1 px-2 text-sm text-white"
+                >
+                  Desativar
                 </button>
               </td>
             </tr>
@@ -59,8 +66,15 @@
               <td class="p-2 text-center">Feijão</td>
               <td class="p-2 text-center">Sim</td>
               <td class="p-2 border-l border-cyan-800 text-center">
-                <button class="rounded-md bg-red-500 hover:bg-red-600 py-1 px-2 text-sm text-white">
-                  Excluir
+                <button
+                  class="rounded-tl-md rounded-bl-md bg-cyan-500 hover:bg-cyan-600 py-1 px-2 text-sm text-white"
+                >
+                  Editar
+                </button>
+                <button
+                  class="rounded-tr-md rounded-br-md bg-red-500 hover:bg-red-600 py-1 px-2 text-sm text-white"
+                >
+                  Desativar
                 </button>
               </td>
             </tr>
@@ -68,8 +82,15 @@
               <td class="p-2 text-center">Batata</td>
               <td class="p-2 text-center">Sim</td>
               <td class="p-2 border-l border-cyan-800 text-center">
-                <button class="rounded-md bg-red-500 hover:bg-red-600 py-1 px-2 text-sm text-white">
-                  Excluir
+                <button
+                  class="rounded-tl-md rounded-bl-md bg-cyan-500 hover:bg-cyan-600 py-1 px-2 text-sm text-white"
+                >
+                  Editar
+                </button>
+                <button
+                  class="rounded-tr-md rounded-br-md bg-red-500 hover:bg-red-600 py-1 px-2 text-sm text-white"
+                >
+                  Desativar
                 </button>
               </td>
             </tr>

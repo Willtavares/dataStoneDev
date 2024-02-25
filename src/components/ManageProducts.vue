@@ -116,9 +116,12 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
+import { productStore } from '@/stores/productStore'
 
-const products = ref([])
+const productsStore = productStore()
+
+const products = computed(() => productsStore.getProducts)
 const idCounter = ref(0)
 
 const newProduct = () => ({
@@ -135,7 +138,8 @@ const enableEdit = ref(false)
 function post() {
   idCounter.value++
   product.value.id = idCounter.value
-  products.value.push(product.value)
+  // products.value.push(product.value)
+  productsStore.addProduct(product.value)
   product.value = newProduct()
 }
 
@@ -149,12 +153,9 @@ function editProduct(id) {
 }
 
 function saveEditedProduct() {
-  const index = products.value.findIndex((u) => u.id === product.value.id)
-  if (index !== -1) {
-    products.value.splice(index, 1, { ...product.value })
-    product.value = newProduct()
-    enableEdit.value = false
-  }
+  productsStore.updateProduct(product.value)
+  product.value = newProduct()
+  enableEdit.value = false
 }
 
 function cancel() {

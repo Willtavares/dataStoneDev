@@ -137,7 +137,7 @@
               <td class="p-2 text-center border-l border-cyan-800 flex justify-center">
                 <div>
                   <button
-                    @click="editProduct(item.id)"
+                    @click="editUser(item.id)"
                     class="rounded-tl-md rounded-bl-md bg-cyan-500 hover:bg-cyan-600 py-1 px-2 text-sm text-white w-full"
                   >
                     Editar
@@ -145,7 +145,7 @@
                 </div>
                 <div v-if="!item.isActive">
                   <button
-                    @click="toggleProductStatus(item.id)"
+                    @click="toggleUserStatus(item.id)"
                     class="rounded-tr-md rounded-br-md bg-green-500 hover:bg-green-600 py-1 px-4 text-sm text-white w-full"
                   >
                     Ativar
@@ -153,7 +153,7 @@
                 </div>
                 <div v-else>
                   <button
-                    @click="toggleProductStatus(item.id)"
+                    @click="toggleUserStatus(item.id)"
                     class="rounded-tr-md rounded-br-md bg-red-500 hover:bg-red-600 py-1 px-2 text-sm text-white w-full"
                   >
                     Desativar
@@ -169,11 +169,12 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
+import { userStore } from '@/stores/userStore'
 
-const users = ref([])
+const usersStore = userStore()
+const users = computed(() => usersStore.getUsers)
 const idCounter = ref(0)
-
 const newUser = () => ({
   id: null,
   name: null,
@@ -182,16 +183,14 @@ const newUser = () => ({
   email: null,
   isActive: null
 })
-
 const user = ref(newUser())
 const editingUserId = ref(null)
-
 const enableEdit = ref(false)
 
 function post() {
   idCounter.value++
   user.value.id = idCounter.value
-  users.value.push(user.value)
+  usersStore.addUser(user.value)
   user.value = newUser()
 }
 
@@ -205,12 +204,9 @@ function editUser(id) {
 }
 
 function saveEditedUser() {
-  const index = users.value.findIndex((u) => u.id === user.value.id)
-  if (index !== -1) {
-    users.value.splice(index, 1, { ...user.value })
-    user.value = newUser()
-    enableEdit.value = true
-  }
+  usersStore.updateUser(user.value)
+  user.value = newUser()
+  enableEdit.value = true
 }
 
 function cancel() {

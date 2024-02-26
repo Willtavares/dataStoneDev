@@ -1,9 +1,62 @@
+<script setup>
+import { ref, computed } from 'vue'
+import { userStore } from '@/stores/userStore'
+
+const usersStore = userStore()
+const users = computed(() => usersStore.getUsers)
+const idCounter = ref(0)
+const newUser = () => ({
+  id: null,
+  name: null,
+  document: null,
+  phone: null,
+  email: null,
+  isActive: null
+})
+const user = ref(newUser())
+const editingUserId = ref(null)
+const enableEdit = ref(false)
+
+function post() {
+  idCounter.value++
+  user.value.id = idCounter.value
+  usersStore.addUser(user.value)
+  user.value = newUser()
+}
+
+function editUser(id) {
+  enableEdit.value = true
+  const userToEdit = users.value.find((u) => u.id === id)
+  if (userToEdit) {
+    user.value = { ...userToEdit }
+    editingUserId.value = id
+  }
+}
+
+function saveEditedUser() {
+  usersStore.updateUser(user.value)
+  user.value = newUser()
+  enableEdit.value = true
+}
+
+function cancel() {
+  user.value = newUser()
+}
+
+function toggleUserStatus(id) {
+  const userToToggle = users.value.find((u) => u.id === id)
+  if (userToToggle) {
+    userToToggle.isActive = !userToToggle.isActive
+  }
+}
+</script>
+
 <template>
   <div>
     <div class="flex flex-col items-center w-full mt-6">
-      <h1 class="text-gray-700 font-semibold text-xl">Cadastro de usuários</h1>
+      <h1 class="mb-4 pt-4 text-slate-700 font-bold text-2xl text-center">Cadastro de usuários</h1>
       <form
-        class="w-2/5 p-2 border border-solid border-cyan-800 rounded-md bg-white"
+        class="w-full md:w-2/3 lg:w-1/2 xl:w-1/3 p-2 border border-solid border-cyan-800 rounded-md bg-white"
         @submit.prevent
       >
         <div class="my-2">
@@ -22,7 +75,7 @@
           />
         </div>
         <div class="flex my-2">
-          <div class="mr-1 w-2/3">
+          <div class="mr-1 w-1/2">
             <label
               class="block uppercase tracking-wide text-gray-700 text-xs font-bold ml-2"
               for="document"
@@ -37,7 +90,7 @@
               id="document"
             />
           </div>
-          <div class="ml-1 w-1/3">
+          <div class="ml-1 w-1/2">
             <label
               class="block uppercase tracking-wide text-gray-700 text-xs font-bold ml-2"
               for="phone"
@@ -109,8 +162,8 @@
       </form>
     </div>
     <div class="flex justify-center w-full mt-8">
-      <div class="w-fit border border-solid border-cyan-800 rounded-md bg-white">
-        <table class="w-[900px]">
+      <div class="w-full md:w-fit border border-solid border-cyan-800 rounded-md bg-white">
+        <table class="w-full">
           <thead class="border-b border-gray-500">
             <tr>
               <th>Nome</th>
@@ -167,58 +220,5 @@
     </div>
   </div>
 </template>
-
-<script setup>
-import { ref, computed } from 'vue'
-import { userStore } from '@/stores/userStore'
-
-const usersStore = userStore()
-const users = computed(() => usersStore.getUsers)
-const idCounter = ref(0)
-const newUser = () => ({
-  id: null,
-  name: null,
-  document: null,
-  phone: null,
-  email: null,
-  isActive: null
-})
-const user = ref(newUser())
-const editingUserId = ref(null)
-const enableEdit = ref(false)
-
-function post() {
-  idCounter.value++
-  user.value.id = idCounter.value
-  usersStore.addUser(user.value)
-  user.value = newUser()
-}
-
-function editUser(id) {
-  enableEdit.value = true
-  const userToEdit = users.value.find((u) => u.id === id)
-  if (userToEdit) {
-    user.value = { ...userToEdit }
-    editingUserId.value = id
-  }
-}
-
-function saveEditedUser() {
-  usersStore.updateUser(user.value)
-  user.value = newUser()
-  enableEdit.value = true
-}
-
-function cancel() {
-  user.value = newUser()
-}
-
-function toggleUserStatus(id) {
-  const userToToggle = users.value.find((u) => u.id === id)
-  if (userToToggle) {
-    userToToggle.isActive = !userToToggle.isActive
-  }
-}
-</script>
 
 <style lang="scss" scoped></style>

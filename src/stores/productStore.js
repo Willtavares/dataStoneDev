@@ -16,6 +16,8 @@ export const productStore = defineStore('productStore', {
     }
   },
   getters: {
-    getProducts: state => state.products
+    getProducts: state => state.products,
+
+    getActiveProducts: state => state.products.filter(product => product.isActive)
   }
 })

@@ -22,9 +22,9 @@ const associated = computed(() => marketsStore.getAssociates)
           Seja bem vindo ao sistema de cadastro
         </h1>
       </div>
-      <div class="flex justify-around">
+      <div class="flex flex-col md:flex-row md:justify-around">
         <div
-          class="flex flex-col items-center shadow appearance-none border rounded w-1/4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline m-2"
+          class="flex flex-col items-center shadow appearance-none border rounded w-full md:w-1/4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline m-2"
         >
           <div class="w-full bg-slate-500 rounded-sm text-slate-100 py-2">
             <h1 class="text-center">Usuário cadastrados</h1>
@@ -37,7 +37,7 @@ const associated = computed(() => marketsStore.getAssociates)
           </div>
         </div>
         <div
-          class="flex flex-col items-center shadow appearance-none border rounded w-1/4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline m-2"
+          class="flex flex-col items-center shadow appearance-none border rounded w-full md:w-1/4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline m-2"
         >
           <div class="w-full bg-slate-500 rounded-sm text-slate-100 py-2">
             <h1 class="text-center">Produtos Cadastrados</h1>
@@ -50,7 +50,7 @@ const associated = computed(() => marketsStore.getAssociates)
           </div>
         </div>
         <div
-          class="flex flex-col items-center shadow appearance-none border rounded w-1/4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline m-2"
+          class="flex flex-col items-center shadow appearance-none border rounded w-full md:w-1/4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline m-2"
         >
           <div class="w-full bg-slate-500 rounded-sm text-slate-100 py-2">
             <h1 class="text-center">Usuários Associados</h1>

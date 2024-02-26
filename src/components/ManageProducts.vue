@@ -120,25 +120,20 @@ import { ref, computed } from 'vue'
 import { productStore } from '@/stores/productStore'
 
 const productsStore = productStore()
-
 const products = computed(() => productsStore.getProducts)
 const idCounter = ref(0)
-
 const newProduct = () => ({
   id: null,
   name: null,
   isActive: null
 })
-
 const product = ref(newProduct())
 const editingProductId = ref(null)
-
 const enableEdit = ref(false)
 
 function post() {
   idCounter.value++
   product.value.id = idCounter.value
-  // products.value.push(product.value)
   productsStore.addProduct(product.value)
   product.value = newProduct()
 }

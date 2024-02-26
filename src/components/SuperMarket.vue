@@ -1,6 +1,6 @@
 <template>
-  <div class="bg-gray-100">
-    <h1 class="m-4 text-slate-700 font-bold text-2xl text-center">
+  <div class="bg-gray-100 h-screen">
+    <h1 class="mb-4 pt-4 text-slate-700 font-bold text-2xl text-center">
       Bem vindo ao mercado de associação
     </h1>
     <div class="flex justify-around flex-nowrap">
@@ -47,7 +47,7 @@
     <div class="flex w-full justify-center">
       <button
         @click="associations"
-        class="text-white text-lg bg-slate-500 hover:bg-slate-700 rounded-md p-4 w-1/2 my-2"
+        class="text-white text-lg bg-slate-500 hover:bg-slate-700 rounded-md p-2 w-1/4 my-2"
       >
         Adicionar produtos ao usuário
       </button>

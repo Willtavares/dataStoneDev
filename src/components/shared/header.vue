@@ -1,5 +1,3 @@
-<script setup></script>
-
 <template>
   <div>
     <nav class="bg-gray-200 py-2 flex items-center">

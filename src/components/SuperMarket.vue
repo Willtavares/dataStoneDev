@@ -11,6 +11,7 @@ const users = computed(() => usersStore.getUsers)
 const marketsStore = marketStore()
 const associated = computed(() => marketsStore.getAssociates)
 
+const idCounter = ref(0)
 const selectUser = ref(false)
 const selectProduct = ref([])
 const produtcList = ref([])
@@ -32,14 +33,14 @@ function associations() {
     produtcList.value.push(find)
   }
 
-  newAssociation.value.id = userSelected.value.id
+  newAssociation.value.id = idCounter.value++
   newAssociation.value.name = userSelected.value.name
   newAssociation.value.products = [...produtcList.value]
 
-  console.log(222, newAssociation)
-
   marketsStore.addAssociation(newAssociation.value)
 
+  newAssociation.value = newAssociations()
+  produtcList.value = []
   selectUser.value = false
   selectProduct.value = []
 }
@@ -85,7 +86,7 @@ function associations() {
             <tr v-if="!products.length" class="w-full text-center">
               <p>Não há produto cadastrado</p>
             </tr>
-            <tr class="border-b border-gray-500" v-for="itemP of products" :key="itemP.id">
+            <tr class="border-b border-gray-500" v-for="(itemP, index) of products" :key="index">
               <td class="p-2 text-center">
                 <input type="checkbox" v-model="selectProduct" :value="itemP.id" :id="itemP.id" />
                 {{ itemP.name }}
@@ -130,7 +131,7 @@ function associations() {
                 {{ itemAssoc.name }}
               </td>
               <td class="p-2 text-center">
-                <div v-for="productAssoc of itemAssoc.products" :key="productAssoc.id">
+                <div v-for="productAssoc of itemAssoc.products" :key="productAssoc.name">
                   {{ productAssoc.name }}
                 </div>
               </td>
